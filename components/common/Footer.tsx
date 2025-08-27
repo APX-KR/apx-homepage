@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="mt-16 pt-8 border-t border-gray-700 text-center text-gray-300 text-body-sm">
+                <div className="mt-16 pt-8 border-t border-gray-300 text-left text-gray-300 text-body-sm">
                     <p>&copy; {new Date().getFullYear()} APX Consulting. All Rights Reserved.</p>
                 </div>
             </Container>
