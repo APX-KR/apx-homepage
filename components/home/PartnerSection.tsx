@@ -1,32 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+
+import React from 'react';
 import Container from '../common/Container';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const PartnerSection: React.FC = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>({ threshold: 0.1 });
+    
     return (
         <section className="bg-apx-foundation-beige py-24 md:py-32 lg:py-40 overflow-hidden">
             <Container ref={sectionRef} className="text-left">

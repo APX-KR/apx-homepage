@@ -1,7 +1,8 @@
 
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Container from '../common/Container';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const infographicData = [
     {
@@ -75,31 +76,7 @@ const SynergyInfographic: React.FC<{ isVisible: boolean }> = ({ isVisible }) => 
 
 
 const PhilosophySection: React.FC = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>();
 
     return (
         <section className="py-20 md:py-28 bg-gradient-to-b from-white to-white overflow-hidden">

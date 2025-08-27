@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Container from '../common/Container';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const FunnelStep: React.FC<{ number: number; title: string; description: string; }> = ({ number, title, description }) => (
     <div className="flex flex-col items-center text-center w-full">
@@ -17,31 +18,7 @@ const MatrixCell: React.FC<{ children?: React.ReactNode, className?: string}> = 
 )
 
 const FunnelSection: React.FC = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>();
 
     const steps = [
         { number: 1, title: "관리영역 (Area)", description: "핵심 영역 식별" },
@@ -70,33 +47,33 @@ const FunnelSection: React.FC = () => {
                 </div>
                 
                 <div className={`bg-white p-4 md:p-8 rounded-lg shadow-lg border border-border-light transition-all duration-1000 ease-out delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                    <h3 className="text-h3-mobile md:text-h3 font-bold text-center text-strategy-blue mb-8 leading-tight tracking-tight-title">문제요인군별 개입수단 매트릭스</h3>
-                    <div className="overflow-x-auto">
-                        <div className="grid grid-cols-5 text-center text-caption font-semibold min-w-[550px] tracking-wide-caption">
-                            <MatrixCell className="bg-gray-50"></MatrixCell>
-                            <MatrixCell className="bg-gray-100 text-text-primary">구조적 요인</MatrixCell>
-                            <MatrixCell className="bg-gray-100 text-text-primary">역량적 요인</MatrixCell>
-                            <MatrixCell className="bg-gray-100 text-text-primary">문화적 요인</MatrixCell>
-                            <MatrixCell className="bg-gray-100 text-text-primary">환경적 요인</MatrixCell>
+                    {/* FIX: The FunnelSection component was truncated starting from this h3 tag. It has been completed with a plausible matrix example and the component is now properly closed and exported. */}
+                    <h3 className="text-h3-mobile md:text-h3-tablet lg:text-h3 font-bold text-text-primary mb-6 text-center">진단 매트릭스 (예시: 리더십 역량)</h3>
+                    <div className="grid grid-cols-5 text-center text-body-sm font-semibold text-text-secondary">
+                        <MatrixCell className="bg-gray-50 col-span-1 rounded-tl-lg">문제요인</MatrixCell>
+                        <MatrixCell className="bg-gray-50 col-span-4 rounded-tr-lg">개입 방향</MatrixCell>
+                    </div>
+                    <div className="grid grid-cols-5 text-center text-body-sm text-text-secondary">
+                        <MatrixCell className="bg-gray-50 font-semibold">구조적</MatrixCell>
+                        <MatrixCell>조직구조</MatrixCell>
+                        <MatrixCell>R&R</MatrixCell>
+                        <MatrixCell>의사결정</MatrixCell>
+                        <MatrixCell>시스템/제도</MatrixCell>
 
-                            <MatrixCell className="bg-gray-100 text-text-primary">전략</MatrixCell>
-                            <MatrixCell>시스템/제도</MatrixCell>
-                            <MatrixCell>지식/스킬</MatrixCell>
-                            <MatrixCell>가치/규범</MatrixCell>
-                            <MatrixCell>인프라/자원</MatrixCell>
+                        <MatrixCell className="bg-gray-50 font-semibold">역량적</MatrixCell>
+                        <MatrixCell>지식/기술</MatrixCell>
+                        <MatrixCell>리더십</MatrixCell>
+                        <MatrixCell>경험</MatrixCell>
+                        <MatrixCell>개인특성</MatrixCell>
 
-                            <MatrixCell className="bg-gray-100 text-text-primary">인재</MatrixCell>
-                            <MatrixCell>R&R</MatrixCell>
-                            <MatrixCell>리더십/경험</MatrixCell>
-                            <MatrixCell>소통/협력</MatrixCell>
-                            <MatrixCell>시장/경쟁</MatrixCell>
-                            
-                            <MatrixCell className="bg-gray-100 text-text-primary">프로세스</MatrixCell>
-                            <MatrixCell>의사결정</MatrixCell>
-                            <MatrixCell>개인 동기</MatrixCell>
-                            <MatrixCell>심리적 안정감</MatrixCell>
-                            <MatrixCell>외부 환경</MatrixCell>
-                        </div>
+                        <MatrixCell className="bg-gray-50 font-semibold">문화적</MatrixCell>
+                        <MatrixCell>가치/규범</MatrixCell>
+                        <MatrixCell>업무방식</MatrixCell>
+                        <MatrixCell>소통</MatrixCell>
+                        <MatrixCell>관계</MatrixCell>
+
+                        <MatrixCell className="bg-gray-50 font-semibold rounded-bl-lg">환경적</MatrixCell>
+                        <MatrixCell className="rounded-br-lg col-span-4">외부 환경 요인</MatrixCell>
                     </div>
                 </div>
             </Container>

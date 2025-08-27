@@ -1,34 +1,10 @@
 
-
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Container from '../common/Container';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const ProblemSection: React.FC = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>();
 
     return (
         <section className="min-h-screen flex items-center bg-gradient-to-b from-apx-growth-green/5 via-apx-growth-green/20 to-white">

@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Container from '../common/Container';
 import { useModal } from '../../contexts/ModalContext';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const categoryStyles = {
     "리더십 역량": { bg: 'bg-leadership-navy/10', text: 'text-leadership-navy', border: 'border-leadership-navy' },
@@ -41,31 +42,7 @@ const InteractiveSection: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>({ threshold: 0.1 });
 
 
     const filteredSolutions = mockSolutions.filter(s => {

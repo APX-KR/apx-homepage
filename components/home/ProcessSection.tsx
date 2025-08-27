@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Container from '../common/Container';
+import { useVisibility } from '../../hooks/useVisibility';
 
 const ProcessStepCard: React.FC<{ step: string; title: string; description: string; color: string;}> = ({ step, title, description, color }) => (
     <div className={`bg-white p-8 rounded-lg shadow-lg text-center border-t-4 ${color}`}>
@@ -17,31 +18,7 @@ const ProcessSection: React.FC = () => {
         { step: "STEP 3", title: "실행 (Execution)", description: "전사 확산·내재화", color: "border-execution-red" }
     ];
 
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(entry.target);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
+    const [sectionRef, isVisible] = useVisibility<HTMLDivElement>({ threshold: 0.1 });
 
     return (
         <section className="py-20 md:py-28 bg-white overflow-hidden">
