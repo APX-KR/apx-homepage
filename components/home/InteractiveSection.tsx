@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Container from '../common/Container';
 import { useModal } from '../../contexts/ModalContext';
@@ -69,40 +68,47 @@ const InteractiveSection: React.FC = () => {
     return (
         <section className="py-20 md:py-28 bg-white overflow-hidden">
             <Container ref={sectionRef}>
-                <div className={`text-left mb-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                <div className={`text-left mb-12 md:mb-16 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                     <h2 className="text-h2-mobile md:text-h2-tablet lg:text-h2 font-semibold text-text-primary mb-4 leading-tighter tracking-tight-title">
                         나만의 솔루션 포트폴리오를 직접 구성해 보세요
                     </h2>
-                    <p className="text-body-lg text-text-secondary leading-normal">
+                    <p className="text-body-lg text-text-secondary max-w-3xl leading-normal">
                         우리 조직에 필요한 솔루션을 ‘나의 포트폴리오’에 담아 상담을 요청하세요.
                     </p>
                 </div>
-                
-                <div className={`flex flex-col md:flex-row justify-between items-center gap-4 mb-8 p-4 bg-white rounded-lg shadow-md border border-border-light transition-all duration-1000 ease-out delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                     <div className="flex flex-wrap justify-center gap-2">
+
+                {/* Search & Filter Section */}
+                <div className={`flex flex-col md:flex-row justify-between items-center gap-6 mb-10`}>
+                    {/* Filter Buttons (Left) */}
+                    <div className={`flex flex-wrap justify-start gap-2 transition-all duration-1000 ease-out delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                         {categories.map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
-                                className={`px-4 py-2 text-body-sm md:text-body-base font-semibold rounded-full transition-colors duration-300 leading-none ${filter === cat ? 'bg-strategy-blue text-white' : 'bg-gray-100 text-text-secondary hover:bg-gray-200'}`}
+                                className={`px-4 py-3 text-body-sm font-semibold rounded-full transition-colors duration-300 leading-none ${filter === cat ? 'bg-strategy-blue text-white' : 'bg-gray-100 text-text-secondary hover:bg-gray-200'}`}
                             >
                                 {cat}
                             </button>
                         ))}
                     </div>
-                     <div className="relative w-full md:w-auto">
+
+                    {/* Search Bar (Right) */}
+                    <div className={`relative w-full md:w-auto md:max-w-xs transition-all duration-1000 ease-out delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                         <input 
                             type="text"
                             placeholder="솔루션 검색..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full md:w-64 px-4 py-2 border border-border-light rounded-full focus:outline-none focus:ring-2 focus:ring-strategy-blue"
+                            className="w-full pl-4 pr-10 py-3 border border-border-light rounded-full focus:outline-none focus:ring-2 focus:ring-strategy-blue text-body-base"
                         />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute right-4 top-1/2 -translate-y-1/2 text-text-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
                     </div>
                 </div>
-
-
-                <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 transition-all duration-1000 ease-out delay-[400ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                
+                {/* Solution List */}
+                <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 ease-out delay-[400ms] ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
                     {filteredSolutions.map(solution => {
                         const styles = categoryStyles[solution.category];
                         return (
@@ -132,17 +138,17 @@ const InteractiveSection: React.FC = () => {
                     style={{ right: 'max(24px, calc((100vw - 1200px) / 2 - 60px))' }}
                 >
                     {/* Hover container to prevent flickering. Width matches expanded state. */}
-                    <div className="relative h-16 w-[200px] flex justify-end items-center group">
+                    <div className="relative h-16 w-[220px] flex justify-end items-center group">
                         
                         {/* Background, text, and main button logic */}
                         <button
                             onClick={() => setShowModal(true)}
                             aria-label={`나의 솔루션 포트폴리오 보기, ${portfolio.length}개 항목`}
-                            className={`absolute right-0 h-16 bg-apx-growth-green rounded-full shadow-lg flex items-center justify-start transition-all duration-300 ease-in-out
-                                        w-16 group-hover:w-[200px]
+                            className={`absolute right-0 h-16 bg-apx-growth-green rounded-full shadow-lg flex items-center justify-start transition-all duration-300 ease-in-out overflow-hidden
+                                        w-16 group-hover:w-[220px]
                                         ${portfolio.length > 0 ? 'animate-pulse' : ''}`}
                         >
-                            <span className="pl-6 text-white font-bold text-body-base whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                            <span className="pl-6 text-white font-bold text-body-base whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100 translate-x-2 group-hover:translate-x-0">
                                 나의 솔루션 포트폴리오
                             </span>
                         </button>

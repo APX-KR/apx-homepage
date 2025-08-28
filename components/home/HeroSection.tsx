@@ -15,17 +15,17 @@ const HeroSection: React.FC = () => {
     }, []);
 
     return (
-        <section className="bg-white pt-5 pb-20 md:pb-28">
-            <Container>
-                <div
-                    className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-cover bg-center flex items-end p-8 md:p-16 lg:p-24"
-                    style={{ 
-                        backgroundImage: "url('https://storage.googleapis.com/apxhomepage-asset/HeroSectionBG01.png')",
-                        minHeight: '660px' 
-                    }}
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/15 to-transparent"></div>
-                    <div className="relative z-10">
+        <section 
+            className="relative bg-cover bg-center"
+            style={{ 
+                backgroundImage: "url('https://storage.googleapis.com/apxhomepage-asset/HeroSectionBG02.png')"
+            }}
+        >
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/15 to-transparent"></div>
+            
+            <Container className="relative z-10">
+                <div className="flex items-end" style={{ minHeight: '740px' }}>
+                    <div className="py-20 md:py-28">
                         <h1 className={`text-h1-mobile md:text-h1-tablet lg:text-h1 font-bold text-white leading-tighter tracking-tight-title mb-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                             조직의 잠재력을<br />성과로 바꾸는 성장 시스템
                         </h1>

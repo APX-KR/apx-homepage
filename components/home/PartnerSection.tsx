@@ -30,13 +30,6 @@ const PartnerSection: React.FC = () => {
                         >
                             뉴스레터 신청하기
                         </a>
-                        <a
-                            href="#resources"
-                            onClick={handleComingSoonClick}
-                            className="w-full sm:w-auto px-8 py-3 bg-transparent text-apx-growth-green font-semibold text-body-base leading-none rounded-full border-2 border-apx-growth-green hover:bg-apx-growth-green hover:text-white hover:-translate-y-0.5 transform transition-all duration-300"
-                        >
-                            자료실 확인하기
-                        </a>
                     </div>
                 </Container>
             </section>
