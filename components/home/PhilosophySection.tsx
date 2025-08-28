@@ -79,7 +79,7 @@ const PhilosophySection: React.FC = () => {
     const [sectionRef, isVisible] = useVisibility<HTMLDivElement>();
 
     return (
-        <section className="py-20 md:py-28 bg-gradient-to-b from-white to-white overflow-hidden">
+        <section className="py-20 md:py-28 bg-white overflow-hidden">
             <Container ref={sectionRef} className="text-center">
                 <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                     <h2 className="text-h2-mobile md:text-h2-tablet lg:text-h2 font-semibold text-text-primary mb-6 leading-tighter tracking-tight-title">

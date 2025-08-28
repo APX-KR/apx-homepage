@@ -48,10 +48,8 @@ const Header: React.FC<HeaderProps> = ({ onMegaMenuToggle }) => {
     <div onMouseLeave={() => setActiveMenu(null)} className="sticky top-0 z-50">
       <header className={`transition-shadow duration-300 ${isScrolled && !activeMenu ? 'shadow-[0_2px_20px_rgba(0,0,0,0.08)]' : ''} bg-white/95 backdrop-blur-lg`}>
         <Container className="flex items-center justify-between h-16 md:h-[72px]">
-          <a href="#" className="flex items-center text-apx-growth-green font-bold text-xl">
-            <svg className="h-8 w-auto md:h-10" viewBox="0 0 100 40" fill="currentColor">
-              <text x="0" y="30" fontFamily="Inter, sans-serif" fontSize="30" fontWeight="bold">APX</text>
-            </svg>
+          <a href="#" className="flex items-center">
+            <img src="https://storage.googleapis.com/apxhomepage-asset/APX_Logo(G).png" alt="APX Consulting Logo" className="h-10 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (

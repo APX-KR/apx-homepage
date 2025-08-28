@@ -7,7 +7,7 @@ const ProblemSection: React.FC = () => {
     const [sectionRef, isVisible] = useVisibility<HTMLDivElement>();
 
     return (
-        <section className="min-h-screen flex items-center bg-gradient-to-b from-apx-growth-green/5 via-apx-growth-green/20 to-white">
+        <section className="min-h-screen flex items-center bg-white">
             <div className="relative w-full">
                 <Container ref={sectionRef} className="text-center max-w-4xl">
                     <h2 className={`text-h2-mobile md:text-h2-tablet lg:text-h2 font-semibold text-text-primary mb-8 leading-tighter tracking-tight-title transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>

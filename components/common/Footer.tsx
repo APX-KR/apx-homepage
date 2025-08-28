@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-12">
                     {/* Column 1: Company Info */}
                     <div className="lg:col-span-4 text-body-sm text-gray-300">
-                        <a href="#" className="text-white font-bold text-4xl mb-6 inline-block">
-                            APX
+                        <a href="#" className="mb-6 inline-block">
+                            <img src="https://storage.googleapis.com/apxhomepage-asset/APX_Logo(W).png" alt="APX Consulting Logo" className="h-10 w-auto" />
                         </a>
                         <div className="space-y-2">
                             <p className="font-semibold text-white">(주)에이피엑스컨설팅</p>
