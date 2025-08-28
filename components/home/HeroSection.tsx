@@ -21,7 +21,7 @@ const HeroSection: React.FC = () => {
                     className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-cover bg-center flex items-end p-8 md:p-16 lg:p-24"
                     style={{ 
                         backgroundImage: "url('https://storage.googleapis.com/apxhomepage-asset/HeroSectionBG01.png')",
-                        minHeight: '560px' 
+                        minHeight: '660px' 
                     }}
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/15 to-transparent"></div>
