@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ onMegaMenuToggle }) => {
     <div onMouseLeave={() => setActiveMenu(null)} className="sticky top-0 z-50">
       <header className={`transition-shadow duration-300 ${isScrolled && !activeMenu ? 'shadow-[0_2px_20px_rgba(0,0,0,0.08)]' : ''} bg-white/95 backdrop-blur-lg`}>
         <Container className="flex items-center justify-between h-16 md:h-[72px]">
-          <a href="#" className="flex items-center">
+          <a href="https://www.apxc.co.kr" className="flex items-center">
             <img src="https://storage.googleapis.com/apxhomepage-asset/APX_Logo(G).png" alt="APX Consulting Logo" className="h-10 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-10">

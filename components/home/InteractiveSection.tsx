@@ -127,11 +127,39 @@ const InteractiveSection: React.FC = () => {
                 </div>
 
                 {/* Floating Portfolio */}
-                <div className="fixed bottom-8 right-8 z-40 transition-transform duration-300 scale-100">
-                    <button onClick={() => setShowModal(true)} className={`bg-apx-growth-green text-white px-6 py-4 rounded-full shadow-lg flex items-center gap-3 hover:bg-apx-deep-growth transition-all duration-300 ${portfolio.length > 0 ? 'animate-pulse' : ''}`}>
-                        <span className="font-bold text-body-base leading-none">포트폴리오 보기</span>
-                        <span className="bg-white text-apx-growth-green rounded-full w-8 h-8 flex items-center justify-center font-bold">{portfolio.length}</span>
-                    </button>
+                <div
+                    className="fixed bottom-8 z-40"
+                    style={{ right: 'max(24px, calc((100vw - 1200px) / 2 - 60px))' }}
+                >
+                    {/* Hover container to prevent flickering. Width matches expanded state. */}
+                    <div className="relative h-16 w-[280px] flex justify-end items-center group">
+                        
+                        {/* Background, text, and main button logic */}
+                        <button
+                            onClick={() => setShowModal(true)}
+                            aria-label={`나의 솔루션 포트폴리오 보기, ${portfolio.length}개 항목`}
+                            className={`absolute right-0 h-16 bg-apx-growth-green rounded-full shadow-lg flex items-center justify-start transition-all duration-300 ease-in-out
+                                        w-16 group-hover:w-[280px]
+                                        ${portfolio.length > 0 ? 'animate-pulse' : ''}`}
+                        >
+                            <span className="pl-6 text-white font-bold text-body-base whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                나의 솔루션 포트폴리오
+                            </span>
+                        </button>
+
+                        {/* Icon layer (fixed position relative to parent) */}
+                        <div className="absolute right-0 w-16 h-16 flex items-center justify-center pointer-events-none z-10">
+                            {/* Briefcase Icon */}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+
+                        {/* Badge layer (fixed position relative to parent) */}
+                        <div className="absolute top-[-2px] right-[-2px] w-7 h-7 bg-white rounded-full flex items-center justify-center text-apx-growth-green font-bold text-sm pointer-events-none z-10 shadow-md">
+                            {portfolio.length}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Modal */}
