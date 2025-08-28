@@ -132,14 +132,14 @@ const InteractiveSection: React.FC = () => {
                     style={{ right: 'max(24px, calc((100vw - 1200px) / 2 - 60px))' }}
                 >
                     {/* Hover container to prevent flickering. Width matches expanded state. */}
-                    <div className="relative h-16 w-[280px] flex justify-end items-center group">
+                    <div className="relative h-16 w-[200px] flex justify-end items-center group">
                         
                         {/* Background, text, and main button logic */}
                         <button
                             onClick={() => setShowModal(true)}
                             aria-label={`나의 솔루션 포트폴리오 보기, ${portfolio.length}개 항목`}
                             className={`absolute right-0 h-16 bg-apx-growth-green rounded-full shadow-lg flex items-center justify-start transition-all duration-300 ease-in-out
-                                        w-16 group-hover:w-[280px]
+                                        w-16 group-hover:w-[200px]
                                         ${portfolio.length > 0 ? 'animate-pulse' : ''}`}
                         >
                             <span className="pl-6 text-white font-bold text-body-base whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
